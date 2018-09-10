@@ -19,6 +19,14 @@ const routes: Routes = [{
       path: 'profile',
       loadChildren: './profile/profile.module#ProfileModule',
     },
+    {
+      path: 'timeline',
+      loadChildren: './timeline/timeline.module#TimelineModule',
+    },
+    {
+      path: 'contact',
+      loadChildren: './contact-information/contact-information.module#ContactInformationModule',
+    }
   ],
 }];
 

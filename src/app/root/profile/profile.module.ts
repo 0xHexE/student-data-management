@@ -14,6 +14,7 @@ import {
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ProfileRootComponent } from './profile-root/profile-root.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatIconModule,
     MatSnackBarModule,
   ],
-  declarations: [ProfileManageComponent]
+  declarations: [ProfileManageComponent, ProfileRootComponent]
 })
 export class ProfileModule { }
