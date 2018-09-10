@@ -1,0 +1,30 @@
+<div class="f4erp-app-container" [class.f4erp-app-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="f4erp-app-toolbar mat-elevation-z2">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="f4erp-app-name" routerLink="/">F4ERP</h1>
+    <span class="fill-flex"></span>
+    <button mat-icon-button *ngIf="angularFireAuth.user | async as user;" [disableRipple]="true" (click)="openProfile($event)">
+      <img class="profile-pic mat-elevation-z1" [src]="user.photoURL">
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="f4erp-app-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [opened]=" !mobileQuery.matches "
+                 class="mat-elevation-z2 f4erp-app-sidenav"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <mat-list-item routerLink="/dashboard">
+          <mat-icon matListIcon> dashboard </mat-icon>
+          <a matLine>Dashboard</a>
+        </mat-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

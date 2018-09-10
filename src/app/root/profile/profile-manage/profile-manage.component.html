@@ -1,0 +1,145 @@
+<div class="container">
+  <mat-card class="no-padding">
+    <mat-vertical-stepper [linear]="true" #stepper>
+      <mat-step [stepControl]="personalInformation">
+        <form [formGroup]="personalInformation">
+          <ng-template matStepLabel>Personal information</ng-template>
+          <div fxLayout="row wrapped" fxLayoutGap="10px" [style.margin-top.px]="10">
+            <mat-form-field fxFlex="calc(50% - 10px)" fxFlex.xs="100%">
+              <input matInput placeholder="PRN Number"
+                     formControlName="prnNumber"
+                     required>
+            </mat-form-field>
+            <div fxFlex="calc(50% - 10px)"  fxFlex.xs="0"></div>
+            <mat-form-field fxFlex="calc(33.33% - 10px)" fxFlex.xs="100%">
+              <input matInput
+                     placeholder="First name"
+                     formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(33.33% - 10px)" fxFlex.xs="100%">
+              <input matInput
+                     placeholder="Middle name"
+                     formControlName="middleName">
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(33.33% - 10px)" fxFlex.xs="100%">
+              <input matInput
+                     placeholder="Last name"
+                     formControlName="lastName">
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(50% - 10px)" fxFlex.xs="100%">
+              <input matInput [matDatepicker]="picker"
+                     formControlName="dob"
+                     placeholder="Date of birth">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div fxFlex="calc(50% - 10px)" fxFlex.xs="0%"></div>
+            <mat-form-field fxFlex>
+              <input type="text" matInput
+                     fxFlex="calc(50% - 10px)"
+                     fxFlex.xs="100%"
+                     formControlName="mothersName"
+                     placeholder="Mother's Name">
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input type="text" matInput
+                     fxFlex="calc(50% - 10px)"
+                     fxFlex.xs="100%"
+                     formControlName="fathersName"
+                     placeholder="Father's name">
+            </mat-form-field>
+          </div>
+          <mat-toolbar class="transparent">
+            <span class="fill-flex"></span>
+            <button mat-raised-button color="primary" matStepperNext>NEXT</button>
+          </mat-toolbar>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addressForm">
+        <form [formGroup]="addressForm">
+          <ng-template matStepLabel>Address information</ng-template>
+
+          <mat-toolbar class="transparent">
+            <span class="fill-flex"></span>
+            <button mat-raised-button (click)="addAddressIntoAddress()">ADD NEW ADDRESS</button>
+          </mat-toolbar>
+
+          <div formArrayName="address" [style.margin-top.px]="12">
+            <div *ngFor="let adr of address.controls; let i = index"
+                 [formGroupName]="i"
+                 fxLayout="row wrapped"
+                 fxLayoutGap="10px">
+
+              <mat-form-field>
+                <mat-select placeholder="Address type">
+                  <mat-option *ngFor="let addressType of ['perment address', 'temporary address']" [value]="addressType">
+                    {{ addressType | titlecase }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="100%">
+                <input type="text" matInput
+                       formControlName="street"
+                       placeholder="Street">
+              </mat-form-field>
+              <mat-form-field fxFlex="calc(50% - 10px)">
+                <input type="text" matInput
+                       formControlName="city"
+                       placeholder="City">
+              </mat-form-field>
+              <mat-form-field fxFlex="calc(50% - 10px)">
+                <input type="text" matInput
+                       formControlName="state"
+                       placeholder="State">
+              </mat-form-field>
+              <mat-form-field fxFlex="100%">
+                <input type="number" matInput
+                       formControlName="pinCode"
+                       placeholder="Pin code">
+              </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+          <mat-toolbar class="transparent">
+            <button mat-button
+                    matStepperPrevious>
+              BACK
+            </button>
+            <span class="fill-flex"></span>
+            <button mat-raised-button
+                    color="primary"
+                    matStepperNext>
+              NEXT
+            </button>
+          </mat-toolbar>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Summary</ng-template>
+
+        <mat-list>
+          <h1 matSubheader> Personal information </h1>
+          <mat-list-item *ngFor="let message of formFirstData">
+            <h3 matLine> {{ message.key }} </h3>
+            <p matLine> {{ message.value }} </p>
+          </mat-list-item>
+        </mat-list>
+
+        <mat-list>
+          <h1 matSubheader> Address </h1>
+          <mat-list-item *ngFor="let message of addresses">
+            <mat-icon matListIcon> person_pin </mat-icon>
+            <h3 matLine> {{ message }} </h3>
+          </mat-list-item>
+        </mat-list>
+
+        <mat-toolbar class="transparent">
+          <button mat-button matStepperPrevious>BACK</button>
+          <span class="fill-flex"></span>
+          <button mat-raised-button color="primary" (click)="saveForm()">SAVE</button>
+        </mat-toolbar>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card>
+</div>

@@ -1,0 +1,17 @@
+<div *ngIf="!isLoading" class="container">
+  <mat-card style="display: flex">
+    <p *ngIf="dataSub">You are all set</p>
+    <span *ngIf="!dataSub" class="fill-flex"></span>
+    <button *ngIf="!dataSub"
+            mat-raised-button
+            color="primary"
+            routerLink="/profile">
+      SETUP ACCOUNT
+    </button>
+    <span *ngIf="!dataSub" class="fill-flex"></span>
+  </mat-card>
+</div>
+
+<mat-progress-bar color="accent"
+                  *ngIf="isLoading"
+                  mode="indeterminate"></mat-progress-bar>

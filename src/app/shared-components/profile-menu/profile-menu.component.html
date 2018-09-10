@@ -1,0 +1,19 @@
+<span class="cdk-visually-hidden" tabindex="-1" #pageInformationFocusTarget>
+  Dialog
+</span>
+<mat-toolbar>
+  <span>Your account</span>
+  <span class="flex-filler"></span>
+</mat-toolbar>
+
+<mat-list>
+  <h3 matSubheader>General</h3>
+  <mat-list-item tabindex="0" routerLink="/profile">
+    <mat-icon matListIcon>person</mat-icon>
+    <h1 matLine>Profile</h1>
+  </mat-list-item>
+  <mat-list-item tabindex="0" (click)="logout()">
+    <mat-icon matListIcon>exit_to_app</mat-icon>
+    <h1 matLine>Logout</h1>
+  </mat-list-item>
+</mat-list>

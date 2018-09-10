@@ -1,0 +1,17 @@
+.fill-flex {
+  flex-grow: 1;
+}
+
+.container {
+  max-width: 900px;
+  padding: 12px;
+  margin: 0 auto;
+}
+
+mat-card.no-padding {
+  padding: 0;
+}
+
+mat-toolbar.transparent {
+  background-color: transparent;
+}
